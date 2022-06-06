@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package greet ;
+
+option go_package = "github.com/gowithvikash/grpc_with_go/client_streaming_api/proto";
+
+message GreetRequest{
+    string name = 1;
+}
+
+message GreetResponse{
+    string result = 1;
+}
+
+service GreetService {
+    rpc Long_Greet (stream GreetRequest) returns (GreetResponse);
+}
+
+// protoc -Iproto --go_opt=module=github.com/gowithvikash/grpc_with_go/client_streaming_api/proto --go-grpc_opt=module=github.com/gowithvikash/grpc_with_go/client_streaming_api/proto --go_out=proto/. --go-grpc_out=proto/. proto/greet.proto
